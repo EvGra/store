@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../features/user/userSlice";
 
@@ -86,12 +86,6 @@ export const Profile = () => {
             />
           </div>
 
-          <div
-            className={styles.link}
-            onClick={() => toggleCurrentFormType("login")}
-          >
-            I already have an account
-          </div>
           <button
             type="submit"
             onClick={handleSubmit}
