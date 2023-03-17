@@ -13,7 +13,7 @@ export const SingleProduct = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { related } = useSelector(({ products }) => products);
+  const { list, related } = useSelector(({ products }) => products);
 
   const { data, isLoading, isFetching, isSuccess } = useGetProductQuery({ id });
 
@@ -24,10 +24,10 @@ export const SingleProduct = () => {
   }, [isLoading, isFetching, isSuccess]);
 
   useEffect(() => {
-    if (data) {
-      dispatch(getRelatedProducts(data.category.id));
-    }
-  }, [data]);
+    if (!data || !list.length) return;
+
+    dispatch(getRelatedProducts(data.category.id));
+  }, [data, list.length, dispatch]);
 
   return !data ? (
     <section className="preloader">Loading...</section>
